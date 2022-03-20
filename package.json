@@ -7,7 +7,7 @@
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js"
   },
-  "author": "Volofymyr Volvakov",
+  "author": "Volodymyr Volvakov",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
