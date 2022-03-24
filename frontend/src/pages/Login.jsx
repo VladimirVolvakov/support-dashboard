@@ -14,7 +14,7 @@ const Login = () => {
 
     const dispatch = useDispatch()
 
-    const { user. isError, isSuccess, isLoading, message } = useSelector(state => state.auth)
+    const { user, isError, isSuccess, isLoading, message } = useSelector(state => state.auth)
 
     const onChange = e => {
         setFormData(prevState => ({
