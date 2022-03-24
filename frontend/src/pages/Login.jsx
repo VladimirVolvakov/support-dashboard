@@ -3,6 +3,7 @@ import { login } from '../features/auth/authSlice'
 import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
+import Spinner from '../components/Spinner'
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -32,6 +33,10 @@ const Login = () => {
         }
 
         dispatch(login(userData))
+    }
+
+    if (isLoading) {
+        return <Spinner />
     }
 
     return (

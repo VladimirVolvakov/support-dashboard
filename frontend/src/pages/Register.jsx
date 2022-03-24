@@ -4,6 +4,7 @@ import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Spinner from '../components/Spinner'
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -54,6 +55,10 @@ const Register = () => {
 
             dispatch(register(userData))
         }
+    }
+
+    if (isLoading) {
+        return <Spinner />
     }
 
     return (
