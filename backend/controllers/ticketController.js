@@ -21,6 +21,35 @@ const getTickets = asyncHandler(async (req, res) => {
     res.status(200).json(tickets)
 })
 
+// @description:    Get single ticket
+// @route:          GET /api/tickets/:ticketId
+// @access:         private
+const getTicket = asyncHandler(async (req, res) => {
+    // Get user with ID in JSON web token:
+    const user = await User.findById(req.user.id)
+
+    if (!user) {
+        res.status(401)
+        throw new Error('User not found')
+    }
+
+    // Get single ticket by its id from URL:
+    const ticket = await Ticket.findById(req.params.ticketId)
+
+    if (!ticket) {
+        res.status(404)
+        throw new Error('Ticket not found')
+    }
+
+    // Check ticket to belong to user requesting it:
+    if (ticket.user.toString() !== req.user.id) {
+        res.status(401)
+        throw new Error('You should be authorized to view this ticket')
+    }
+
+    res.status(200).json(ticket)
+})
+
 // @description:    Create a new ticket
 // @route:          POST /api/tickets
 // @access:         private
@@ -52,7 +81,9 @@ const createTicket = asyncHandler(async (req, res) => {
     res.status(201).json(ticket)
 })
 
+
 module.exports = {
     createTicket,
+    getTicket,
     getTickets
 }
