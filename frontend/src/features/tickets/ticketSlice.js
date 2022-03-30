@@ -44,6 +44,23 @@ export const getTickets = createAsyncThunk(
     }
 )
 
+// Get user single ticket:
+export const getTicket = createAsyncThunk(
+    'tickets/get', 
+    async (ticketId, thunkAPI) => {
+        try {
+            // Get user token:
+            const token = thunkAPI.getState().auth.user.token
+            // Get tickets:
+            return await ticketService.getTicket(ticketId, token)
+        } catch (error) {
+            const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
 // Create slice:
 export const ticketSlice = createSlice({
     name: 'ticket',

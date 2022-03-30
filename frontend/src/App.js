@@ -7,6 +7,7 @@ import NewTicket from './pages/NewTicket'
 import PrivateRoute from './components/PrivateRoute'
 import Register from './pages/Register'
 import React from 'react'
+import Ticket from './pages/Ticket'
 import Tickets from './pages/Tickets'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route path='/tickets' element={<PrivateRoute />}>
             <Route path='/tickets' element={<Tickets />} />
+          </Route>
+          <Route path='/ticket/:ticketId' element={<PrivateRoute />}>
+            <Route path='/ticket/:ticketId' element={<Ticket />} />
           </Route>
         </Routes>
       </div>
