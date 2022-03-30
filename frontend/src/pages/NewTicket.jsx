@@ -3,6 +3,7 @@ import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import BackButton from '../components/BackButton'
 import Spinner from '../components/Spinner'
 
 const NewTicket = () => {
@@ -40,9 +41,10 @@ const NewTicket = () => {
     if (isLoading) {
         return <Spinner />
     }
-    
+
     return (
         <>
+            <BackButton url='/' />
             <section className='heading'>
                 <h1>Create new ticket</h1>
                 <p>Please fill the form below</p>
