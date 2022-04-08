@@ -1,6 +1,6 @@
 import { closeTicket, getTicket } from '../features/tickets/ticketSlice'
+import { createNote, getNotes, reset as notesReset } from '../features/notes/noteSlice'
 import { FaPlus } from 'react-icons/fa'
-import { getNotes, reset as notesReset } from '../features/notes/noteSlice'
 import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
@@ -59,6 +59,7 @@ const Ticket = () => {
     // Note submitting:
     const onNoteSubmit = e => {
         e.preventDefault()
+        dispatch(createNote({noteText, ticketId}))
         closeModal()
     }
 
